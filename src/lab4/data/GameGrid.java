@@ -7,6 +7,7 @@ import java.util.Observable;
  */
 
 public class GameGrid extends Observable{
+	public static int EMPTY, ME, OTHER;
 
 	
 	/**
