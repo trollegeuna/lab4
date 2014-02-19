@@ -38,6 +38,9 @@ public class GomokuGUI implements Observer{
 		Container contentPane = window.getContentPane();
 		contentPane.setLayout(layout);
 		
+		final GomokuGameState locGameState = g;	//Used inside anonymous class
+		final GomokuClient locClient = c;		//User inside anonymous class
+		
 		//----Add components----
 		//GamePanel TODO uncomment when implemented
 //		gameGridPanel = new GamePanel(g.getGameGrid());//It is actually a JPanel
@@ -49,19 +52,12 @@ public class GomokuGUI implements Observer{
 		//Connect button
 		connectButton = new JButton("Connect");
 		connectButton.addActionListener(new ActionListener() {//Should be anonymous
-			private GomokuClient client;
 			public void actionPerformed(ActionEvent e)
 			{
 				//Connect
-				ConnectionWindow connection = new ConnectionWindow(client);
+				ConnectionWindow connection = new ConnectionWindow(locClient);
 			}
-			
-			private ActionListener init(GomokuClient c)
-			{
-				this.client = c;
-				return this;
-			}
-		}.init(c));
+		});
 		window.add(connectButton);
 		layout.putConstraint(SpringLayout.NORTH, connectButton, 5, SpringLayout.SOUTH, window/*gameGridPanel*/);//Set top to game grid's bottom + 5 px padding
 		layout.putConstraint(SpringLayout.WEST, connectButton, 5, SpringLayout.WEST, window);
@@ -69,19 +65,12 @@ public class GomokuGUI implements Observer{
 		//New game button
 		newGameButton = new JButton("New Game");
 		newGameButton.addActionListener(new ActionListener() {
-			private GomokuGameState gameState;
 			public void actionPerformed(ActionEvent e)
 			{
 				//Set up new game
-				gameState.newGame();
+				locGameState.newGame();
 			}
-			
-			private ActionListener init(GomokuGameState g)//Not in the UML-diagram however it is private so it should be okay
-			{
-				this.gameState = g;
-				return this;
-			}
-		}.init(g));
+		});
 		window.add(newGameButton);
 		layout.putConstraint(SpringLayout.NORTH, newGameButton, 5, SpringLayout.SOUTH, window/*gameGridPanel*/);
 		layout.putConstraint(SpringLayout.WEST, newGameButton, 5, SpringLayout.EAST, connectButton);
@@ -89,19 +78,12 @@ public class GomokuGUI implements Observer{
 		//Disconnect button
 		disconnectButton = new JButton("Disconnect");
 		disconnectButton.addActionListener(new ActionListener() {
-			private GomokuGameState gameState;
 			public void actionPerformed(ActionEvent e)
 			{
 				//Disconnect
-				gameState.disconnect();
+				locGameState.disconnect();
 			}
-			
-			private ActionListener init(GomokuGameState g)//Not in the UML-diagram however it is private so it should be okay
-			{
-				this.gameState = g;
-				return this;
-			}
-		}.init(g));
+		});
 		window.add(disconnectButton);
 		layout.putConstraint(SpringLayout.NORTH, disconnectButton, 5, SpringLayout.SOUTH, window/*gameGridPanel*/);
 		layout.putConstraint(SpringLayout.WEST, disconnectButton, 5, SpringLayout.EAST, newGameButton);
