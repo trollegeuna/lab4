@@ -1,6 +1,11 @@
 package lab4.gui;
+import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
+
+import javax.swing.*;
 
 import lab4.client.GomokuClient;
 import lab4.data.GameGrid;
@@ -11,7 +16,10 @@ import lab4.data.GomokuGameState;
  */
 
 public class GomokuGUI implements Observer{
-
+	private GamePanel gameGridPanel;
+	private JButton connectButton, newGameButton, disconnectButton;
+	private JLabel messageLabel;
+	
 	private GomokuClient client;
 	private GomokuGameState gamestate;
 	
@@ -22,12 +30,70 @@ public class GomokuGUI implements Observer{
 	 * @param c   The client that is responsible for the communication
 	 */
 	public GomokuGUI(GomokuGameState g, GomokuClient c){
-		this.client = c;
+		//Set up window
+		JFrame window = new JFrame("Gomoku");
+		SpringLayout layout = new SpringLayout();
+		
+		Container contentPane = window.getContentPane();
+		contentPane.setLayout(layout);
+		
+		//----Add components----
+		//GamePanel
+		gameGridPanel = new GamePanel(g.getGameGrid());//It is actually a JPanel
+		window.add(gameGridPanel);
+		layout.putConstraint(SpringLayout.NORTH, gameGridPanel, 5, SpringLayout.NORTH, contentPane);//Set top to 5 px from top
+		layout.putConstraint(SpringLayout.WEST, gameGridPanel, 5, SpringLayout.WEST, contentPane);//Set left 5 px from windows left
+		
+		//---Buttons---
+		//Connect button
+		connectButton = new JButton("Connect");
+		connectButton.addActionListener(new ActionListener() {//Should be anonymous
+			public void actionPerformed(ActionEvent e)
+			{
+				//Connect
+				JOptionPane.showMessageDialog(null, "Connecting... (Not Yet Implemented)");
+			}
+		});
+		window.add(connectButton);
+		layout.putConstraint(SpringLayout.NORTH, connectButton, 5, SpringLayout.SOUTH, gameGridPanel);//Set top to game grid's bottom + 5 px padding
+		layout.putConstraint(SpringLayout.WEST, connectButton, 5, SpringLayout.WEST, window);
+		
+		//New game button
+		newGameButton = new JButton("New Game");
+		newGameButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				//Set up new game
+				JOptionPane.showMessageDialog(null, "Setting up new game... (Not Yet Implemented)");
+			}
+		});
+		window.add(newGameButton);
+		layout.putConstraint(SpringLayout.NORTH, newGameButton, 5, SpringLayout.SOUTH, window);
+		layout.putConstraint(SpringLayout.WEST, newGameButton, 5, SpringLayout.EAST, connectButton);
+		
+		//Disconnect button
+		disconnectButton = new JButton("Disconnect");
+		disconnectButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				//Disconnect
+				JOptionPane.showMessageDialog(null, "Disconnecting... (Not Yet Implemented)");
+			}
+		});
+		window.add(disconnectButton);
+		layout.putConstraint(SpringLayout.NORTH, disconnectButton, 5, SpringLayout.SOUTH, gameGridPanel);
+		layout.putConstraint(SpringLayout.WEST, disconnectButton, 5, SpringLayout.EAST, newGameButton);
+		
+		//Packs content (which sets window size) and displays window
+		window.pack();
+		window.setVisible(true);
+		
+		//Set up this as observer to specified observables
+		//TODO: Enable when implemented
+		/*this.client = c;
 		this.gamestate = g;
 		client.addObserver(this);
-		gamestate.addObserver(this);
-		
-		
+		gamestate.addObserver(this);*/
 	}
 	
 	
