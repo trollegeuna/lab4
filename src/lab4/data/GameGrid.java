@@ -6,6 +6,7 @@ import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MaximizeAction;
 
 /**
  * Represents the 2-d game grid
+ * hej
  */
 
 public class GameGrid extends Observable{
