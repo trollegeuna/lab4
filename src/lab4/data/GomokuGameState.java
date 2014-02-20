@@ -52,7 +52,9 @@ public class GomokuGameState extends Observable implements Observer{
 	 * 
 	 * @return the game grid
 	 */
-	public GameGrid getGameGrid(){}
+	public GameGrid getGameGrid(){
+		return this.gameGrid;//OBS, titta över detta, la till det bara för att kunna köra min del ///David
+	}
 
 	/**
 	 * This player makes a move at a specified location

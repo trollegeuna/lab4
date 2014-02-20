@@ -9,7 +9,7 @@ public class GomokuMain {
 	public static void main(String[] args) {
 		// TODO fix
 		//Temporary
-		GomokuClient client = new GomokuClient(4000);//Should be specified as an argument
+		GomokuClient client = new GomokuClient(7001);//Should be specified as an argument
 		GomokuGameState gameState = new GomokuGameState(client);
 		GomokuGUI gui = new GomokuGUI(gameState, client);
 	}
