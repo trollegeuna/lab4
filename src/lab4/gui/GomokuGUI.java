@@ -42,11 +42,10 @@ public class GomokuGUI implements Observer{
 		final GomokuClient locClient = c;		//User inside anonymous class
 		
 		//----Add components----
-		//GamePanel TODO uncomment when implemented
-//		gameGridPanel = new GamePanel(g.getGameGrid());//It is actually a JPanel
-//		window.add(gameGridPanel);
-//		layout.putConstraint(SpringLayout.NORTH, gameGridPanel, 5, SpringLayout.NORTH, contentPane);//Set top to 5 px from top
-//		layout.putConstraint(SpringLayout.WEST, gameGridPanel, 5, SpringLayout.WEST, contentPane);//Set left 5 px from windows left
+		gameGridPanel = new GamePanel(g.getGameGrid());//It is actually a JPanel
+		window.add(gameGridPanel);
+		layout.putConstraint(SpringLayout.NORTH, gameGridPanel, 5, SpringLayout.NORTH, contentPane);//Set top to 5 px from top
+		layout.putConstraint(SpringLayout.WEST, gameGridPanel, 5, SpringLayout.WEST, contentPane);//Set left 5 px from windows left
 
 		//---Buttons---
 		//Connect button
@@ -59,7 +58,7 @@ public class GomokuGUI implements Observer{
 			}
 		});
 		window.add(connectButton);
-		layout.putConstraint(SpringLayout.NORTH, connectButton, 5, SpringLayout.SOUTH, window/*gameGridPanel*/);//Set top to game grid's bottom + 5 px padding
+		layout.putConstraint(SpringLayout.NORTH, connectButton, 5, SpringLayout.SOUTH, gameGridPanel);//Set top to game grid's bottom + 5 px padding
 		layout.putConstraint(SpringLayout.WEST, connectButton, 5, SpringLayout.WEST, window);
 		
 		//New game button
@@ -72,7 +71,7 @@ public class GomokuGUI implements Observer{
 			}
 		});
 		window.add(newGameButton);
-		layout.putConstraint(SpringLayout.NORTH, newGameButton, 5, SpringLayout.SOUTH, window/*gameGridPanel*/);
+		layout.putConstraint(SpringLayout.NORTH, newGameButton, 5, SpringLayout.SOUTH, gameGridPanel);
 		layout.putConstraint(SpringLayout.WEST, newGameButton, 5, SpringLayout.EAST, connectButton);
 		
 		//Disconnect button
@@ -85,7 +84,7 @@ public class GomokuGUI implements Observer{
 			}
 		});
 		window.add(disconnectButton);
-		layout.putConstraint(SpringLayout.NORTH, disconnectButton, 5, SpringLayout.SOUTH, window/*gameGridPanel*/);
+		layout.putConstraint(SpringLayout.NORTH, disconnectButton, 5, SpringLayout.SOUTH, gameGridPanel);
 		layout.putConstraint(SpringLayout.WEST, disconnectButton, 5, SpringLayout.EAST, newGameButton);
 		
 		//Label
@@ -99,11 +98,10 @@ public class GomokuGUI implements Observer{
 		window.setVisible(true);
 		
 		//Set up this as observer to specified observables
-		//TODO: Enable when implemented
-		/*this.client = c;
+		this.client = c;
 		this.gamestate = g;
 		client.addObserver(this);
-		gamestate.addObserver(this);*/
+		gamestate.addObserver(this);
 	}
 	
 	
