@@ -104,6 +104,7 @@ public class GomokuGameState extends Observable implements Observer{
 			gameGrid.clearGrid();
 			currentState = OTHER_TURN;
 			message = "Game start other guys turn";
+			client.sendNewGameMessage();
 			setChanged();
 			notifyObservers();
 		}
@@ -140,6 +141,7 @@ public class GomokuGameState extends Observable implements Observer{
 		gameGrid.clearGrid();
 		currentState = NOT_STARTED;
 		message = "You have disconnected from the game";
+		client.disconnect();
 		setChanged();
 		notifyObservers();
 	}
