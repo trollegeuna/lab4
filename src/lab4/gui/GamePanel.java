@@ -63,9 +63,12 @@ public class GamePanel extends JPanel implements Observer{
 		
 		//Boxes
 		g.setColor(Color.black);
-		for(int i = 0; i < GridSize; i++)
+		for(int row = 0; row < GridSize; row++)
 		{
-			//g.drawRect();
+			for(int col = 0; col < GridSize; col++)
+			{
+				g.drawRect(UNIT_SIZE * col, UNIT_SIZE * row, UNIT_SIZE * (col + 1), UNIT_SIZE * (row + 1));
+			}
 		}
 	}
 	
