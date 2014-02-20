@@ -42,10 +42,9 @@ public class GamePanel extends JPanel implements Observer{
 	 * @return an integer array containing the [x, y] grid position
 	 */
 	public int[] getGridPosition(int x, int y){
-		//Not sure if this is what is supposed to happen
 		int[] coordinates = new int[2];
-		coordinates[0] = (x % UNIT_SIZE) * UNIT_SIZE;//Get x-component
-		coordinates[1] = (y & UNIT_SIZE) * UNIT_SIZE;//Get y-component
+		coordinates[0] = (x / UNIT_SIZE);//Get x-component
+		coordinates[1] = (y / UNIT_SIZE);//Get y-component
 		return coordinates;
 	}
 	
@@ -67,7 +66,19 @@ public class GamePanel extends JPanel implements Observer{
 		{
 			for(int col = 0; col < GridSize; col++)
 			{
-				g.drawRect(UNIT_SIZE * col, UNIT_SIZE * row, UNIT_SIZE * (col + 1), UNIT_SIZE * (row + 1));
+				g.drawRect(UNIT_SIZE * col, UNIT_SIZE * row, UNIT_SIZE, UNIT_SIZE);
+				
+				switch(grid.getLocation(col, row))
+				{
+					case GameGrid.ME:
+						g.drawLine(UNIT_SIZE * col, UNIT_SIZE * row, UNIT_SIZE * (col + 1), UNIT_SIZE * (row + 1));
+						g.drawLine(UNIT_SIZE * (col + 1), UNIT_SIZE * row, UNIT_SIZE * col, UNIT_SIZE * (row + 1));
+						break;
+					
+					case GameGrid.OTHER:
+						g.drawOval(UNIT_SIZE * col, UNIT_SIZE * row, UNIT_SIZE, UNIT_SIZE);
+						break;
+				}
 			}
 		}
 	}

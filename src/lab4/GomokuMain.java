@@ -7,9 +7,7 @@ import lab4.gui.GomokuGUI;
 public class GomokuMain {
 
 	public static void main(String[] args) {
-		// TODO fix
-		//Temporary
-		GomokuClient client = new GomokuClient(7001);//Should be specified as an argument
+		GomokuClient client = new GomokuClient(Integer.parseInt(args[0]));
 		GomokuGameState gameState = new GomokuGameState(client);
 		GomokuGUI gui = new GomokuGUI(gameState, client);
 	}
