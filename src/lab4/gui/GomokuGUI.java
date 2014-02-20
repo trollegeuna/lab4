@@ -49,8 +49,8 @@ public class GomokuGUI implements Observer{
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
+				int[] coordinates = gameGridPanel.getGridPosition(e.getX(), e.getY());
+				locGameState.move(coordinates[0], coordinates[1]);
 			}
 
 			@Override
@@ -67,8 +67,8 @@ public class GomokuGUI implements Observer{
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				int[] coordinates = gameGridPanel.getGridPosition(e.getX(), e.getY());
-				locGameState.move(coordinates[0], coordinates[1]);
+				// TODO Auto-generated method stub
+				
 			}
 
 			@Override
