@@ -46,7 +46,8 @@ public class GomokuGUI implements Observer{
 		window.add(gameGridPanel);
 		layout.putConstraint(SpringLayout.NORTH, gameGridPanel, 5, SpringLayout.NORTH, contentPane);//Set top to 5 px from top
 		layout.putConstraint(SpringLayout.WEST, gameGridPanel, 5, SpringLayout.WEST, contentPane);//Set left 5 px from windows left
-
+		layout.putConstraint(SpringLayout.EAST, gameGridPanel, 5, SpringLayout.EAST, contentPane);
+		
 		//---Buttons---
 		//Connect button
 		connectButton = new JButton("Connect");
