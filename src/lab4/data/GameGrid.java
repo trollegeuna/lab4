@@ -6,7 +6,7 @@ import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MaximizeAction;
 
 /**
  * Represents the 2-d game grid
- * hej
+ * 
  */
 
 public class GameGrid extends Observable{
@@ -16,7 +16,7 @@ public class GameGrid extends Observable{
 	public static final int EMPTY = 0;
 	public static final int ME = 1;
 	public static final int OTHER = 2;
-	public static final int INROW = 5;
+	private static final int INROW = 5;
 	private int[][] grid;
 
 	
